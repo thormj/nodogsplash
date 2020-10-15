@@ -43,6 +43,16 @@ install:
 	cp resources/splash.css $(DESTDIR)/etc/nodogsplash/htdocs/
 	cp resources/status.html $(DESTDIR)/etc/nodogsplash/htdocs/
 	cp resources/splash.jpg $(DESTDIR)/etc/nodogsplash/htdocs/images/
+	echo Installed into paths; either add to /etc/rc.local or
+	echo sudo make install-service
+	
+install-service:
+	cp nodogsplash.service  /etc/systemd/system
+	systemctl daemon-reload
+	echo Installed.  To make run on boot
+	echo "  sudo systemctl enable nodogsplash.service"
+	echo and to start,
+	echo "   sudo systemctl start nodogsplash"
 
 checkastyle:
 	@command -v astyle >/dev/null 2>&1 || \
